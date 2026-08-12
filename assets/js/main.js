@@ -61,6 +61,62 @@
     go(0);
   }
 
+
+  // gallery lightbox
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('.g-item'));
+  if (tiles.length) {
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Gallery photograph');
+    box.innerHTML =
+      '<button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>' +
+      '<button class="lb-btn lb-prev" type="button" aria-label="Previous photograph">&larr;</button>' +
+      '<button class="lb-btn lb-next" type="button" aria-label="Next photograph">&rarr;</button>' +
+      '<img alt=""><p class="lb-cap"></p>';
+    document.body.appendChild(box);
+
+    var lbImg = box.querySelector('img');
+    var lbCap = box.querySelector('.lb-cap');
+    var at = 0;
+    var opener = null;
+
+    function show(n) {
+      at = (n + tiles.length) % tiles.length;
+      var t = tiles[at];
+      lbImg.src = t.getAttribute('data-full');
+      lbImg.alt = t.getAttribute('data-caption') || '';
+      lbCap.textContent = t.getAttribute('data-caption') || '';
+    }
+    function open(n) {
+      opener = tiles[n];
+      show(n);
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      box.querySelector('.lb-close').focus();
+    }
+    function close() {
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (opener) opener.focus();
+    }
+
+    tiles.forEach(function (t, i) {
+      t.addEventListener('click', function () { open(i); });
+    });
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.querySelector('.lb-prev').addEventListener('click', function () { show(at - 1); });
+    box.querySelector('.lb-next').addEventListener('click', function () { show(at + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(at - 1);
+      if (e.key === 'ArrowRight') show(at + 1);
+    });
+  }
+
   // contact form
   var form = document.getElementById('enquiry');
   if (form) {
