@@ -170,40 +170,19 @@ ul{margin:0; padding:0; list-style:none}
 }
 .quote p{margin:0 0 1em; font-size:15px; line-height:1.8}
 .quote p:last-child{margin-bottom:0}
-.quote-body{position:relative; max-height:250px; overflow:hidden}
-.quote-body.is-clamped::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:64px;
-  background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 78%); pointer-events:none;
+.quote-body{
+  max-height:250px; overflow-y:auto; padding-right:16px;
+  scrollbar-width:thin; scrollbar-color:var(--line-2) transparent; overscroll-behavior:contain;
 }
-.quote-more{
-  align-self:flex-start; margin-top:-4px; background:none; border:0; padding:10px 0; cursor:pointer;
-  font-family:inherit; font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--navy); display:inline-flex; align-items:center; gap:9px; min-height:44px;
-}
-.quote-more:hover{color:var(--orange)}
-.quote-more span{color:var(--orange)}
+.quote-body::-webkit-scrollbar{width:6px}
+.quote-body::-webkit-scrollbar-track{background:var(--grey)}
+.quote-body::-webkit-scrollbar-thumb{background:var(--line-2)}
+.quote-body:hover::-webkit-scrollbar-thumb{background:var(--orange)}
 
-/* full testimonial modal */
-.q-modal{position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:20px}
-.q-modal[hidden]{display:none}
-.q-modal-backdrop{position:absolute; inset:0; background:rgba(1,32,74,.72)}
-.q-modal-panel{
-  position:relative; background:#fff; border-top:4px solid var(--orange);
-  max-width:760px; width:100%; max-height:86vh; overflow:auto; padding:44px 28px 32px;
-}
-.q-modal-close{
-  position:absolute; top:8px; right:8px; width:48px; height:48px; border:0; background:none;
-  font-size:30px; line-height:1; color:var(--charcoal); cursor:pointer; font-family:inherit;
-}
-.q-modal-close:hover{color:var(--orange)}
-.q-modal-body p{margin:0 0 1em; font-size:16px; line-height:1.8}
-.q-modal-body p:last-child{margin-bottom:0}
-.q-modal-foot{margin-top:26px; padding-top:22px; border-top:1px solid var(--line)}
-.q-modal-foot strong{display:block; font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--navy)}
-.q-modal-foot span{display:block; font-size:14px; color:var(--charcoal); opacity:.7; margin-top:5px}
-.quote footer{margin-top:auto}
+.quote footer{margin-top:auto; padding-top:22px; border-top:1px solid var(--line)}
 .quote strong{display:block; font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--navy)}
-.quote span{display:block; font-size:14px; color:var(--charcoal); opacity:.7; margin-top:5px}
+.quote span{display:block; font-size:14px; color:var(--charcoal); opacity:.7; margin-top:7px}
+
 .carousel-controls{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:22px}
 .dots{display:flex; gap:8px}
 .dots button{width:36px; height:6px; border:0; padding:0; cursor:pointer; background:var(--line-2)}
@@ -389,7 +368,6 @@ ul{margin:0; padding:0; list-style:none}
   .section{padding:100px 0}
   .quote{flex:0 0 calc(50% - 12px); min-height:400px; padding:44px 40px}
   .quote-body{max-height:280px}
-  .q-modal-panel{padding:52px 48px 40px}
   .carousel-track{gap:24px}
   .quote p{font-size:17px}
   .band-media img{min-height:460px}
