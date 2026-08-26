@@ -117,6 +117,46 @@
     });
   }
 
+  // testimonial read more
+  var modal = document.querySelector('[data-quote-modal]');
+  if (modal) {
+    var target = modal.querySelector('[data-quote-target]');
+    var foot = modal.querySelector('[data-quote-foot]');
+    var lastFocus = null;
+
+    function openQuote(article) {
+      target.innerHTML = article.querySelector('[data-quote-body]').innerHTML;
+      foot.innerHTML = article.querySelector('footer').innerHTML;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.q-modal-close').focus();
+    }
+    function closeQuote() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    Array.prototype.forEach.call(modal.querySelectorAll('[data-quote-close]'), function (el) {
+      el.addEventListener('click', closeQuote);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeQuote();
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('.quote'), function (article) {
+      var body = article.querySelector('[data-quote-body]');
+      if (!body || body.scrollHeight <= body.clientHeight + 8) return;
+      body.classList.add('is-clamped');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quote-more';
+      btn.innerHTML = 'Read more <span aria-hidden="true">&rarr;</span>';
+      btn.addEventListener('click', function () { lastFocus = btn; openQuote(article); });
+      body.parentNode.insertBefore(btn, body.nextSibling);
+    });
+  }
+
   // contact form
   var form = document.getElementById('enquiry');
   if (form) {
