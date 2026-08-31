@@ -124,6 +124,10 @@ ul{margin:0; padding:0; list-style:none}
 .band-media img{width:100%; height:220px; object-fit:cover}
 
 /* gallery: even grid of thumbnails, full photo opens in the lightbox */
+.gallery-group{margin:0 0 20px}
+.gallery-group--next{margin-top:52px}
+.gallery-head{font-size:20px; color:var(--navy); margin-bottom:8px}
+.gallery-note{font-size:15px; margin:0; opacity:.8}
 .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
 .g-item{
   position:relative; padding:0; border:0; margin:0; background:var(--grey);
@@ -262,6 +266,7 @@ ul{margin:0; padding:0; list-style:none}
 .follow a{display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px; color:#fff}
 .follow a:hover{color:var(--orange)}
 .follow svg{flex:none}
+.contact-mark{display:none}
 .contact-mark img{height:56px; width:auto}
 
 /* legal */
@@ -316,6 +321,9 @@ ul{margin:0; padding:0; list-style:none}
   .card h3{font-size:26px}
   .card p{font-size:16px}
   .gallery{gap:14px}
+  .gallery-group{margin-bottom:26px}
+  .gallery-group--next{margin-top:72px}
+  .gallery-head{font-size:24px}
   .quote{padding:40px 36px}
   .quote p{font-size:17px}
   .band{flex-direction:row}
@@ -342,6 +350,7 @@ ul{margin:0; padding:0; list-style:none}
   .contact-form{flex:1.05; padding:72px 40px}
   .contact-side{flex:.95; padding:72px 40px}
   .contact-email{font-size:23px}
+  .contact-mark{display:block}
   .legal-head{padding:72px 0}
   .site-footer{padding:64px 0 30px}
   .footer-grid{grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px}
